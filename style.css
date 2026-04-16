@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+
+h1 {
+    font-family: "Play", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+p,
+li {
+    font-family: "Caveat", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.do-list {
+    background: linear-gradient(#2c3e50, #1a252f);
+    /* background: linear-gradient(#aedcf7, #057892); */
+    height: 100vh;
+    overflow: hidden;
+}
+
+.do-list__container {
+    position: relative;
+    margin: auto;
+    max-width: 700px;
+    height: 100%;
+    background: linear-gradient(#fffca8, #fcf88f);
+}
+
+.do-list__header {
+    background: linear-gradient(#a18378, #443629);
+    padding: 40px;
+}
+
+.do-list__title {
+    color: white;
+}
+
+.do-list__input {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    border-bottom: 3px double #181818;
+    font-size: 1.5rem;
+}
+
+.do-list__input::placeholder{
+    opacity: 0.3;
+}
+
+.do-list__input:focus {
+    outline: none;
+    box-shadow: inset 0 0 5px #181818;
+}
+
+.do-list__things {
+    max-height: 70%;
+    overflow: auto;
+    
+}
+
+.do-list__btns {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    justify-content: space-around;
+}
+
+/*
+#f6f2c5 верх
+#faf7a8 низ
+#f8f598 центр
+*/
+
+.do-list__btn {
+    border: none;
+    padding: 10px;
+    /* background-color: #81a9eb; */
+    /* color: white; */
+    border-radius: 50px;
+    font-size: 1.5rem;
+    background: none;
+    user-select: none;
+    transition: 0.1s;
+}
+
+
+.do-list__btn img {
+    height: 70px;
+    width: 70px;
+}
+
+.do-list__btn:hover {
+    cursor: pointer;
+    /* transform: rotate(50deg); */
+    animation: btn-move 0.4s ease-in 0s 1;
+}
+
+.do-list__btn:active {
+    filter: invert(40%);
+}
+
+li {
+    user-select: none;
+    padding: 3px 5px;
+    list-style: none;
+    cursor: pointer;
+}
+
+li:nth-child(odd) {
+    background-color: #f8e798;
+}
+
+li:nth-child(even) {
+    background-color: #ff000023;
+}
+
+
+.li-checked {
+    text-decoration: line-through;
+}
+
+@keyframes btn-move{
+    0%{
+        transform: rotate(0);
+    }
+
+    25%{
+        transform: rotate(5deg);
+    }
+
+    50%{
+        transform: rotate(-5deg);
+    }
+
+    100%{
+        transform: rotate(0);
+    }
+}
