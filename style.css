@@ -112,30 +112,33 @@ li {
     filter: invert(40%);
 }
 
-li {
+.do-list__things li {
     user-select: none;
     padding: 3px 5px;
     list-style: none;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
 }
 
-li:nth-child(odd) {
+.do-list__things li:nth-child(odd) {
     background-color: #f8e798;
 }
 
-li:nth-child(even) {
+.do-list__things li:nth-child(even) {
     background-color: #ff000023;
 }
 
-li img{
+.do-list__things li img{
     width: 0;
-    height: 26px;
-    transition: width 0.2s, opacity 0.5s;
+    height: 30px;
+    transition: width 0.2s, opacity 0.1s ease-in;
     opacity: 0;
+    align-self: center;
 }
 
-li:hover img{
-    width: 24px;
+.do-list__things li:hover img{
+    width: 28px;
     opacity: 1;
 }
 

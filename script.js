@@ -22,8 +22,8 @@ input.onkeypress = function (event) {
         let span = document.createElement("span");
         let img = document.createElement("img");
         img.setAttribute("src", "img/garbage.svg");
-        li.appendChild(img);
         li.appendChild(span);
+        li.appendChild(img);
         span.innerHTML = input.value;
         list.appendChild(li);
         input.value = "";
@@ -34,8 +34,9 @@ input.onkeypress = function (event) {
 list.onclick = function () {
     let target = event.target;
     if (target.tagName === "LI" || target.tagName === "SPAN") {
-        console.dir(target);
-        target.classList.toggle("li-checked");
+        let li = target.closest("li");
+        li.classList.toggle("li-checked");
+        // console.dir(target);
     } else if (target.tagName === "IMG") {
         target.parentElement.remove();
     }
