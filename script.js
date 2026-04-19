@@ -2,9 +2,10 @@ let input = document.querySelector(".do-list__input");
 let list = document.querySelector(".do-list__things");
 let clearAll = document.querySelector("#clearBtn");
 let completedBtn = document.querySelector("#completedBtn");
-let tuggler = 0;
 
-list.innerHTML = localStorage.getItem("todoList") || "";
+list.innerHTML = localStorage.getItem("todoList");
+
+console.log(list.innerHTML)
 
 function saveList() {
     localStorage.setItem("todoList", list.innerHTML);
@@ -14,23 +15,29 @@ function saveList() {
 input.onkeypress = function (event) {
 
     if (event.keyCode == 13) {
-        let li = document.createElement("li");
         if (input.value == "") {
             return
         }
-        li.innerHTML = input.value;
-        document.querySelector("ul").appendChild(li);
+        let li = document.createElement("li");
+        let span = document.createElement("span");
+        let img = document.createElement("img");
+        img.setAttribute("src", "img/garbage.svg");
+        li.appendChild(img);
+        li.appendChild(span);
+        span.innerHTML = input.value;
+        list.appendChild(li);
         input.value = "";
     }
-    tuggler = 0;
     saveList()
 }
 
 list.onclick = function () {
     let target = event.target;
-    if (target.tagName === "LI") {
+    if (target.tagName === "LI" || target.tagName === "SPAN") {
         console.dir(target);
         target.classList.toggle("li-checked");
+    } else if (target.tagName === "IMG") {
+        target.parentElement.remove();
     }
     saveList()
 }
@@ -40,27 +47,38 @@ clearBtn.onclick = function () {
     for (let i = 0; i < listItem.length; i++) {
         listItem[i].remove();
     }
-    tuggler = 0;
     saveList()
 }
 
 completedBtn.onclick = function () {
     let listItem = document.querySelectorAll("li");
-   
-    if (tuggler % 2 == 0) {
-        for (let i = 0; i < listItem.length; i++) {
-            listItem[i].classList.add("li-checked");
+
+    let tuggler = true;
+
+    for (let i = 0; i < listItem.length; i++){
+        if(!listItem[i].classList.contains("li-checked")){
+            tuggler = false;
+            break
         }
-        tuggler++;
+    }
+
+    if (!tuggler) {
+        for (let i = 0; i < listItem.length; i++) {
+            if (!listItem[i].classList.contains("li-chacked")) {
+                listItem[i].classList.add("li-checked");
+            }
+        }
+        tuggler = true;
 
     } else {
         for (let i = 0; i < listItem.length; i++) {
             listItem[i].classList.remove("li-checked");
         }
-        tuggler--;
+        tuggler = false;
     }
 
     console.log(tuggler);
-    saveList()
+    console.log(list);
+    // saveList()
 }
 
